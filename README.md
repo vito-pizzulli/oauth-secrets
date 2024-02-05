@@ -34,7 +34,7 @@ Questo progetto implementa un sistema di autenticazione. L'utente autenticato pu
     1. Registrandoti con la tua email e scegliendo una password, che poi userai per effettuare il login.
     2. Cliccando su `Sign In with Google` in alto a destra, potrai loggare tramite il tuo account Google.
 3. Dopo esserti autenticato, verrai reindirizzato alla pagina nella quale visualizzerai il tuo segreto, oppure un messaggio di default nel caso non l'abbia ancora inserito.
-4. Cliccando su `Submit a Secret`, potrai inserire un segreto che andrà a sovrascrivere il precedente nel caso fosse presente. Con il pulsante `Submit` potrai confermare e sarai nuovamente reindirizzato alla pagina contenente il segreto aggiornato.
+4. Cliccando su `Submit a Secret`, potrai inserire un segreto che andrà a sovrascrivere il precedente nel caso sia presente. Con il pulsante `Submit` potrai confermare e sarai nuovamente reindirizzato alla pagina contenente il segreto aggiornato.
 5. Cliccando sul pulsante `Log Out`, verrai disconnesso al tuo account e reindirizzato alla pagina iniziale.
 
 ## Variabili d'ambiente

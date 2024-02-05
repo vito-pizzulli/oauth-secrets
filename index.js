@@ -58,13 +58,20 @@ app.get("/logout", (req, res) => {
 });
 
 app.get("/secrets", (req, res) => {
-  console.log(req.user);
   if (req.isAuthenticated()) {
-    res.render("secrets.ejs");
+    res.render("secrets.ejs", { secret: req.user.secret });
   } else {
     res.redirect("/login");
   }
 });
+
+app.get("/submit", (req, res) => {
+  if (req.isAuthenticated()) {
+    res.render("submit.ejs");
+  } else {
+    res.redirect("/login");
+  }
+})
 
 app.get(
   "/auth/google",
@@ -91,21 +98,17 @@ app.post("/register", async (req, res) => {
   const password = req.body.password;
 
   try {
-    const checkResult = await db.query("SELECT * FROM users WHERE email = $1", [
-      email,
-    ]);
+    const checkResult = await db.query("SELECT * FROM users WHERE email = $1", [email]);
 
     if (checkResult.rows.length > 0) {
-      req.redirect("/login");
+      res.redirect("/login");
     } else {
       bcrypt.hash(password, saltRounds, async (err, hash) => {
         if (err) {
           console.error("Error hashing password:", err);
         } else {
           const result = await db.query(
-            "INSERT INTO users (email, password) VALUES ($1, $2) RETURNING *",
-            [email, hash]
-          );
+            "INSERT INTO users (email, password) VALUES ($1, $2) RETURNING *", [email, hash]);
           const user = result.rows[0];
           req.login(user, (err) => {
             console.log("success");
@@ -118,6 +121,20 @@ app.post("/register", async (req, res) => {
     console.log(err);
   }
 });
+
+app.post("/submit", async (req, res) => {
+  const secret = req.body.secret;
+
+  try {
+    const authUserEmail = req.user.email;
+    await db.query(
+      "UPDATE users SET secret = $1 WHERE email = $2", [secret, authUserEmail]
+    );
+    res.render("secrets.ejs", { secret: secret });
+  } catch (err) {
+    console.log(err);
+  }
+})
 
 passport.use("local",
   new Strategy(async function verify(username, password, cb) {

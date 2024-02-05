@@ -29,7 +29,7 @@ Questo progetto implementa un sistema di autenticazione. L'utente autenticato pu
 8. Avvia il server locale con il comando `node index.js` o preferibilmente installare nodemon e utilizzare il comando `nodemon index.js`.
 
 ## Come Utilizzare
-1. Apri il tuo browser e vai all'indirizzo localhost:3000 per utilizzare l'applicazione.
+1. Apri il tuo browser e vai all'indirizzo `localhost:3000` per utilizzare l'applicazione.
 2. Puoi autenticarti al sito in due modi:
     1. Registrandoti con la tua email e scegliendo una password, che poi userai per effettuare il login.
     2. Cliccando su `Sign In with Google` in alto a destra, potrai loggare tramite il tuo account Google.

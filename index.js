@@ -122,7 +122,7 @@ app.post("/register", async (req, res) => {
   }
 });
 
-app.post("/submit", async (req, res) => {
+app.post("/secrets", async (req, res) => {
   const secret = req.body.secret;
 
   try {

@@ -13,6 +13,7 @@ Questo progetto implementa un sistema di autenticazione. L'utente autenticato pu
 - Node.js
 - Express
 - EJS
+- Body Parser
 - postgreSQL
 - passport
 - dotenv
